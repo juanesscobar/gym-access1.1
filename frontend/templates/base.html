@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Gym Access{% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <!-- JS Global -->
+    <script src="/static/js/main.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <h1>Gym Access</h1>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="/home" class="nav-item">🏠</a>
+        <a href="/members" class="nav-item">👥</a>
+        <a href="/qr" class="nav-item">📷</a>
+        <a href="/trainings" class="nav-item">💪</a>
+        <a href="/commerce" class="nav-item">🛒</a>
+    </nav>
+</body>
+</html>
+{% block extra_scripts %}{% endblock %}
+
