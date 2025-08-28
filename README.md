@@ -58,8 +58,7 @@ Abrir en el navegador
 
 http://127.0.0.1:8000
 
-📂 Estructura del proyecto
-gym-access1.1/
+📂 gym-access1.1/
 │
 ├── backend/
 │   ├── main.py             # Configuración principal de FastAPI
@@ -74,6 +73,7 @@ gym-access1.1/
 │
 ├── requirements.txt        # Dependencias del proyecto
 └── README.md               # Documentación
+
 
 🧑‍💻 Contribución
 
@@ -95,5 +95,3 @@ Abre un Pull Request.
 Este proyecto está bajo la licencia MIT.
 Consulta el archivo LICENSE
  para más detalles.
-
-💬 Contacto
