@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GymAccess - Admin Panel</title>
+<link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>Administrador GymAccess</h1>
+</header>
+
+<main>
+    <div class="card">
+        <h2>Total Usuarios</h2>
+        <p>{{ total_users }}</p>
+    </div>
+
+    <div class="card">
+        <h2>Clases Activas</h2>
+        <p>{{ total_classes }}</p>
+    </div>
+
+    <div class="card chart-container">
+        <h2>Reservas Esta Semana</h2>
+        <canvas id="reservationsChart"></canvas>
+    </div>
+</main>
+
+<nav class="bottom-nav">
+    <a href="#">Inicio</a>
+    <a href="#">Perfil</a>
+    <a href="#">Configuración</a>
+</nav>
+
+<script src="{{ url_for('static', path='js/main.js') }}"></script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GymAccess - Admin Panel</title>
+<link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>Administrador GymAccess</h1>
+</header>
+
+<main>
+    <div class="card">
+        <h2>Total Usuarios</h2>
+        <p>{{ total_users }}</p>
+    </div>
+
+    <div class="card">
+        <h2>Clases Activas</h2>
+        <p>{{ total_classes }}</p>
+    </div>
+
+    <div class="card chart-container">
+        <h2>Reservas Esta Semana</h2>
+        <canvas id="reservationsChart"></canvas>
+    </div>
+</main>
+
+<nav class="bottom-nav">
+    <a href="#">Inicio</a>
+    <a href="#">Perfil</a>
+    <a href="#">Configuración</a>
+</nav>
+
+<script src="{{ url_for('static', path='js/main.js') }}"></script>
+
+</body>
+</html>

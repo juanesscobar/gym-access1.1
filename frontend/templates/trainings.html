@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GymAccess - Ejercicios</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<header>Ejercicios</header>
+
+<main>
+  <div class="card module-container">
+    <h2>Entrenamientos</h2>
+    <ul id="trainings-list"></ul>
+  </div>
+</main>
+
+<nav class="bottom-nav">
+  <a href="/">🏠 Home</a>
+  <a href="/dashboard">📊 Dashboard</a>
+  <a href="/miembros">👥 Miembros</a>
+  <a href="/comercio">🛒 Comercio</a>
+</nav>
+
+<script src="/static/js/main.js"></script>
+<script>
+fetch('/api/trainings')
+  .then(res => res.json())
+  .then(data => {
+    const ul = document.getElementById('trainings-list');
+    data.forEach(exercise => {
+      const li = document.createElement('li');
+      li.textContent = `${exercise.title} - ${exercise.duration}`;
+      ul.appendChild(li);
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GymAccess - Dashboard Ultra Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+/* RESET Y TIPOGRAFÍA */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; transition: all 0.3s ease;}
+body {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  background: linear-gradient(45deg,#0f0c29,#302b63,#24243e);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color:#fff;
+  overflow-x:hidden;
+  padding-bottom: 70px; /* espacio nav inferior */
+}
+@keyframes gradientBG {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* PARTICULAS */
+#particles {
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* HEADER */
+header{
+  padding:1rem 2rem;
+  font-size:1.8rem;
+  font-weight:700;
+  color:#0ff;
+  text-shadow:0 0 15px #0ff;
+  letter-spacing:1.5px;
+  position:relative;
+  z-index:1;
+  text-align:center;
+}
+
+/* MAIN GRID */
+main{
+  flex:1;
+  padding:2rem;
+  padding-bottom:1rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1.5rem;
+  position:relative;
+  z-index:1;
+}
+
+/* CARD ULTRA PREMIUM */
+.card{
+  position:relative;
+  border-radius:20px;
+  padding:2rem;
+  overflow:hidden;
+  cursor:pointer;
+  background:linear-gradient(135deg,#1c1b2f,#4b367c);
+  box-shadow:0 15px 35px rgba(0,255,255,0.25);
+  backdrop-filter:blur(5px);
+  transition: all 0.4s ease;
+  animation: glowPulse 3s ease-in-out infinite alternate;
+}
+@keyframes glowPulse {
+  0% { box-shadow: 0 10px 25px rgba(0,255,255,0.2); }
+  100% { box-shadow: 0 20px 50px rgba(0,255,255,0.5); }
+}
+.card::before{
+  content:'';
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:linear-gradient(120deg,rgba(0,255,255,0.3),rgba(255,0,255,0.3),rgba(0,255,255,0.3));
+  animation: rotateBG 8s linear infinite;
+}
+@keyframes rotateBG{
+  0%{transform:rotate(0deg);}
+  100%{transform:rotate(360deg);}
+}
+.card h2{
+  position:relative;
+  font-size:1.4rem;
+  font-weight:700;
+  margin-bottom:1rem;
+  color:#0ff;
+  z-index:1;
+  text-shadow:0 0 12px #0ff;
+}
+.card p{
+  position:relative;
+  color:#ddd;
+  z-index:1;
+  font-size:1rem;
+}
+.card:hover{
+  transform: translateY(-10px) scale(1.05);
+}
+.card:hover h2{ color:#0f0; text-shadow:0 0 20px #0f0; }
+.card:hover p{ color:#aff; }
+
+/* GRÁFICOS */
+.chart-container{
+  position:relative;
+  border-radius:20px;
+  padding:1rem;
+  box-shadow:0 15px 35px rgba(0,255,255,0.25);
+  overflow:hidden;
+  background:linear-gradient(145deg,#1b1a2d,#3a3d50);
+}
+
+/* MENÚ INFERIOR ULTRA */
+nav.bottom-nav{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  display:flex;
+  justify-content:space-around;
+  background:rgba(20,20,40,0.95);
+  padding:1rem 0;
+  box-shadow:0 -5px 25px rgba(0, 255, 255, 0.25);
+  animation: glowPulseNav 3s ease-in-out infinite alternate;
+  z-index:10;
+}
+@keyframes glowPulseNav {
+  0% { box-shadow:0 -5px 15px rgba(0,255,255,0.2);}
+  100% { box-shadow:0 -5px 35px rgba(0,255,255,0.5);}
+}
+nav.bottom-nav a{
+  color:#0ff;
+  text-decoration:none;
+  font-weight:700;
+  font-size:1.2rem;
+  text-shadow:0 0 10px #0ff;
+  position:relative;
+}
+nav.bottom-nav a::after{
+  content:'';
+  position:absolute;
+  width:0%;
+  height:2px;
+  bottom:-3px;
+  left:0;
+  background:#0ff;
+  transition:0.3s;
+}
+nav.bottom-nav a:hover{
+  color:#0f0;
+  text-shadow:0 0 20px #0f0;
+}
+nav.bottom-nav a:hover::after{ width:100%; }
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  main { grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
+}
+@media(max-width:600px){
+  header{ font-size:1.4rem; }
+  .card h2{ font-size:1rem; }
+  nav.bottom-nav a{ font-size:1rem; }
+  .chart-container{ min-height:200px; }
+}
+</style>
+</head>
+<body>
+
+<div id="particles"></div>
+
+<header>GymAccess Dashboard</header>
+
+<main>
+  <!-- Cards resumen -->
+  <div class="card"><h2>Accesos Hoy</h2><p id="today-access">--</p></div>
+  <div class="card chart-container"><h2>Accesos Esta Semana</h2><canvas id="weeklyChart"></canvas></div>
+  <div class="card"><h2>Nuevos Socios</h2><p id="new-members">--</p></div>
+  <div class="card"><h2>Clases Populares</h2><p id="popular-classes">--</p></div>
+
+  <!-- MODULOS -->
+  <div class="card" id="members-module"><h2>Miembros</h2><div id="members-list"></div></div>
+  <div class="card" id="qr-module"><h2>Escáner QR</h2><button id="scan-qr">Iniciar Escaneo</button></div>
+  <div class="card" id="trainings-module"><h2>Entrenamientos</h2><div id="trainings-list"></div></div>
+  <div class="card" id="commerce-module"><h2>Comercio</h2><div id="commerce-list"></div></div>
+</main>
+
+<nav class="bottom-nav">
+  <a href="/home">🏠 Home</a>
+  <a href="/members">👥 Miembros</a>
+  <a href="/trainings">🏋️ Ejercicios</a>
+  <a href="/commerce">🛒 Comercio</a>
+</nav>
+
+<script>
+// CHART ULTRA
+const ctx = document.getElementById('weeklyChart').getContext('2d');
+const weeklyChart = new Chart(ctx,{
+  type:'line',
+  data:{
+    labels:['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'],
+    datasets:[{
+      label:'Accesos',
+      data:[50,75,60,90,120,110,95],
+      backgroundColor:'rgba(0,255,255,0.3)',
+      borderColor:'#0ff',
+      borderWidth:3,
+      tension:0.4,
+      fill:true,
+      pointBackgroundColor:'#0ff',
+      pointRadius:6,
+      pointHoverRadius:10
+    }]
+  },
+  options:{
+    responsive:true,
+    animation:{ duration:2000, easing:'easeOutQuart' },
+    plugins:{ legend:{ display:false } },
+    scales:{
+      y:{ beginAtZero:true, grid:{ color:'rgba(0,255,255,0.1)' }, ticks:{ color:'#0ff', font:{ weight:600 } } },
+      x:{ grid:{ color:'rgba(0,255,255,0.1)' }, ticks:{ color:'#0ff', font:{ weight:600 } } }
+    }
+  }
+});
+
+// PARTICULAS
+const canvas = document.createElement('canvas');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+document.getElementById('particles').appendChild(canvas);
+const ctxParticles = canvas.getContext('2d');
+const particles = [];
+for(let i=0;i<80;i++){
+  particles.push({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    r: Math.random()*3+1,
+    dx: (Math.random()-0.5)*1.5,
+    dy: (Math.random()-0.5)*1.5,
+    alpha: Math.random()
+  });
+}
+function animateParticles(){
+  ctxParticles.clearRect(0,0,canvas.width,canvas.height);
+  for(let p of particles){
+    ctxParticles.beginPath();
+    ctxParticles.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctxParticles.fillStyle=`rgba(0,255,255,${p.alpha})`;
+    ctxParticles.fill();
+    p.x+=p.dx; p.y+=p.dy;
+    if(p.x<0||p.x>canvas.width)p.dx*=-1;
+    if(p.y<0||p.y>canvas.height)p.dy*=-1;
+  }
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+window.addEventListener('resize',()=>{canvas.width=window.innerWidth; canvas.height=window.innerHeight;});
+
+// MODULOS (Ejemplo con API)
+document.getElementById("scan-qr").addEventListener("click",()=>{
+  alert("Aquí se abriría la cámara para escanear QR y registrar asistencia");
+});
+fetch("/api/members").then(r=>r.json()).then(data=>{
+  document.getElementById("members-list").innerHTML = data.map(m=>`<p>${m.name} (${m.status})</p>`).join('');
+});
+fetch("/api/trainings").then(r=>r.json()).then(data=>{
+  document.getElementById("trainings-list").innerHTML = data.map(t=>`<p>${t.className} - ${t.time}</p>`).join('');
+});
+fetch("/api/products").then(r=>r.json()).then(data=>{
+  document.getElementById("commerce-list").innerHTML = data.map(p=>`<p>${p.name}: $${p.price}</p>`).join('');
+});
+</script>
+
+</body>
+</html>
+<!-- --- IGNORE --- -->

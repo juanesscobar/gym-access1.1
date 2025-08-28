@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GymAccess - Miembros</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<header>Miembros</header>
+
+<main>
+  <div class="card module-container">
+    <h2>Lista de Miembros</h2>
+    <ul id="members-list">
+      <!-- Lista generada por JS -->
+    </ul>
+  </div>
+</main>
+
+<nav class="bottom-nav">
+  <a href="/">🏠 Home</a>
+  <a href="/dashboard">📊 Dashboard</a>
+  <a href="/ejercicios">💪 Ejercicios</a>
+  <a href="/comercio">🛒 Comercio</a>
+</nav>
+
+<script src="/static/js/main.js"></script>
+<script>
+fetch('/api/members')
+  .then(res => res.json())
+  .then(data => {
+    const ul = document.getElementById('members-list');
+    data.forEach(member => {
+      const li = document.createElement('li');
+      li.textContent = `${member.name} - ${member.membership}`;
+      ul.appendChild(li);
+    });
+  });
+</script>
+
+</body>
+</html>

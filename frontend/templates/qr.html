@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GymAccess - QR</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<header>Escáner QR</header>
+
+<main>
+  <div class="card module-container">
+    <h2>QR de asistencia</h2>
+    <img id="qr-code" src="" alt="QR Code" style="width:100%; max-width:300px;">
+  </div>
+</main>
+
+<nav class="bottom-nav">
+  <a href="/">🏠 Home</a>
+  <a href="/dashboard">📊 Dashboard</a>
+  <a href="/miembros">👥 Miembros</a>
+  <a href="/ejercicios">💪 Ejercicios</a>
+</nav>
+
+<script src="/static/js/main.js"></script>
+<script>
+fetch('/api/qr')
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('qr-code').src = data.qr_code;
+  });
+</script>
+
+</body>
+</html>

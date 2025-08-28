@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GymAccess - Comercio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<header>Comercio</header>
+
+<main>
+  <div class="card module-container">
+    <h2>Productos</h2>
+    <ul id="products-list"></ul>
+  </div>
+</main>
+
+<nav class="bottom-nav">
+  <a href="/">🏠 Home</a>
+  <a href="/dashboard">📊 Dashboard</a>
+  <a href="/miembros">👥 Miembros</a>
+  <a href="/ejercicios">💪 Ejercicios</a>
+</nav>
+
+<script src="/static/js/main.js"></script>
+<script>
+fetch('/api/products')
+  .then(res => res.json())
+  .then(data => {
+    const ul = document.getElementById('products-list');
+    data.forEach(product => {
+      const li = document.createElement('li');
+      li.textContent = `${product.name} - $${product.price}`;
+      ul.appendChild(li);
+    });
+  });
+</script>
+
+</body>
+</html>
