@@ -1,5 +1,81 @@
-venv/
+# -------------------------------
+# Python
+# -------------------------------
 __pycache__/
-*.pyc
-*.pyd
+*.py[cod]
 *.pyo
+*.pyd
+*.pyc
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# pip cache
+pip-log.txt
+pip-delete-this-directory.txt
+
+# pyenv
+.python-version
+
+# mypy
+.mypy_cache/
+
+# -------------------------------
+# VS Code
+# -------------------------------
+.vscode/
+*.code-workspace
+
+# -------------------------------
+# JetBrains
+# -------------------------------
+.idea/
+
+# -------------------------------
+# OS files
+# -------------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------------
+# Logs
+# -------------------------------
+*.log
+
+# -------------------------------
+# Database / SQLite
+# -------------------------------
+*.db
+*.sqlite3
+
+# -------------------------------
+# Frontend build / node_modules
+# -------------------------------
+node_modules/
+dist/
+build/
+
+# -------------------------------
+# Static / media uploads (optional)
+# -------------------------------
+staticfiles/
+media/
+
+# -------------------------------
+# Coverage / testing
+# -------------------------------
+htmlcov/
+.coverage
+.tox/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+
+# -------------------------------
+# Temporary / cache
+# -------------------------------
+*.tmp
+*.swp
+*.bak

@@ -1,99 +1,75 @@
-/* RESET Y TIPOGRAFÍA */
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; transition: all 0.3s ease;}
 body {
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  background: linear-gradient(45deg,#0f0c29,#302b63,#24243e);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-  color:#fff;
-  overflow-x:hidden;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    color: #fff;
+    margin: 0;
+    padding: 0;
 }
-@keyframes gradientBG {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+
+.app-header {
+    text-align: center;
+    padding: 15px;
+    background: #111;
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
-header {
-  padding:1rem 2rem;
-  font-size:1.8rem;
-  font-weight:700;
-  color:#0ff;
-  text-shadow:0 0 15px #0ff;
-  letter-spacing:1.5px;
-  position:relative;
-  z-index:1;
-}
+
 main {
-  flex:1;
-  padding:2rem;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:1.5rem;
-  position:relative;
-  z-index:1;
+    padding: 20px;
+    min-height: calc(100vh - 60px);
 }
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(20, 20, 20, 0.95);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.nav-item {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 1.4rem;
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover, .nav-item.active {
+    color: #00ffb2;
+    transform: scale(1.1);
+}
+
 .card {
-  position:relative;
-  border-radius:20px;
-  padding:2rem;
-  overflow:hidden;
-  cursor:pointer;
-  background:linear-gradient(135deg,#1c1b2f,#4b367c);
-  box-shadow:0 15px 35px rgba(0,255,255,0.25);
-  backdrop-filter:blur(5px);
-  transition: all 0.4s ease;
-  animation: glowPulse 3s ease-in-out infinite alternate;
+    background: #1e1e1e;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
 }
-@keyframes glowPulse {
-  0% { box-shadow: 0 10px 25px rgba(0,255,255,0.2); }
-  100% { box-shadow: 0 20px 50px rgba(0,255,255,0.5); }
+
+.card:hover {
+    transform: translateY(-3px);
 }
-.card::before{
-  content:'';
-  position:absolute;
-  top:-50%;
-  left:-50%;
-  width:200%;
-  height:200%;
-  background:linear-gradient(120deg,rgba(0,255,255,0.3),rgba(255,0,255,0.3),rgba(0,255,255,0.3));
-  animation: rotateBG 8s linear infinite;
+
+button {
+    background: #00ffb2;
+    color: #000;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
-@keyframes rotateBG{
-  0%{transform:rotate(0deg);}
-  100%{transform:rotate(360deg);}
+
+button:hover {
+    background: #00d48f;
 }
-.card h2{ font-size:1.4rem; font-weight:700; margin-bottom:1rem; color:#0ff; text-shadow:0 0 12px #0ff; z-index:1;}
-.card p{ position:relative; color:#ddd; z-index:1; font-size:1rem;}
-.card:hover{ transform: translateY(-10px) scale(1.05);}
-.card:hover h2{ color:#0f0; text-shadow:0 0 20px #0f0; }
-.card:hover p{ color:#aff; }
-.chart-container{ position:relative; border-radius:20px; padding:1rem; box-shadow:0 15px 35px rgba(0,255,255,0.25); overflow:hidden; background:linear-gradient(145deg,#1b1a2d,#3a3d50);}
-nav.bottom-nav{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  display:flex;
-  justify-content:space-around;
-  background:rgba(20,20,40,0.95);
-  padding:1rem 0;
-  box-shadow:0 -5px 25px rgba(0, 255, 255, 0.25);
-  animation: glowPulseNav 3s ease-in-out infinite alternate;
-}
-@keyframes glowPulseNav { 0% { box-shadow:0 -5px 15px rgba(0,255,255,0.2);} 100% { box-shadow:0 -5px 35px rgba(0,255,255,0.5);}}
-nav.bottom-nav a{
-  color:#0ff; text-decoration:none; font-weight:700; font-size:1.2rem; text-shadow:0 0 10px #0ff; position:relative;
-}
-nav.bottom-nav a::after{
-  content:''; position:absolute; width:0%; height:2px; bottom:-3px; left:0; background:#0ff; transition:0.3s;
-}
-nav.bottom-nav a:hover{ color:#0f0; text-shadow:0 0 20px #0f0; }
-nav.bottom-nav a:hover::after{ width:100%; }
-/* RESPONSIVE */
-@media(max-width:600px){
-  header{ font-size:1.5rem; }
-  .card h2{ font-size:1.2rem; }
-  main{ padding:1rem; gap:1rem; }
-}
-/* --- IGNORE --- */
